@@ -15,7 +15,7 @@ import {
 
 import "../style/Login.sass";
 
-import { isLoggedIn, login, logout } from "../services/Auth";
+import { isLoggedIn, login, logout, getUserLoggedInfo } from "../services/Auth";
 import { defaultInputState } from "../utils/formDefaultStates";
 import stateKeysToArray from "../utils/stateKeysToArray";
 
@@ -41,6 +41,12 @@ class Login extends Component {
     ) {
       this.handleRequestErrors();
     }
+  }
+
+  formatUserInfo() {
+    const userData = getUserLoggedInfo();
+    const user = JSON.parse(userData);
+    return user.firstName + " " + user.lastName;
   }
 
   handleFieldUpdate = (fieldName, state) => {
@@ -193,7 +199,7 @@ class Login extends Component {
                   type="title"
                   color={themes.vojo.colors.primaryColor}
                 >
-                  <strong>Acessando como XXX</strong>
+                  <strong>Acessando como {this.formatUserInfo()}</strong>
                 </Typography>
               </div>
               <div className="Login__Text__ForgotPassword">

@@ -27,6 +27,10 @@ export const isLoggedIn = () => {
   return false;
 };
 
+export const getUserLoggedInfo = () => {
+  return localStorage.getItem("auth");
+};
+
 export const getToken = () => {
   return JSON.parse(localStorage.getItem("auth")).token;
 };
